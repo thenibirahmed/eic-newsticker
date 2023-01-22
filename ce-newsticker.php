@@ -98,5 +98,6 @@ function ce_newsticker_shortcode($atts, $content = null) {
     </div>
     
 <?php 
+    wp_reset_query();
     return ob_get_clean();
 }
