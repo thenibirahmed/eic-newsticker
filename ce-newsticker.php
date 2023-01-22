@@ -7,13 +7,31 @@ Description: CE Newsticker is a simple plugin to display news ticker on your web
 Version: 1.0
 Author: codecstasy
 Author URI: http://www.codecstasy.com/
-License: GPL2
+License: GPL2,
+Text Domain: ce-newsticker
 */
 
 
 
 add_shortcode('ce_newsticker', 'ce_newsticker_shortcode');
 function ce_newsticker_shortcode($atts, $content = null) { 
+
+    extract(shortcode_atts( array(
+        'title' => 'News',
+        'title_bg' => 'red',
+        'title_color' => 'white',
+        'title_font_size' => '20px',
+        'title_font_weight' => 'normal',
+        'content_bg' => '#eee',
+        'content_color' => 'white',
+        'content_font_size' => '20px',
+        'content_font_weight' => 'normal',
+        'dot_bg' => 'red',
+        'dot_size' => '18px',
+        'dot_radius' => '2px',
+    ), $atts, 'ce_newsticker' ));
+
+    ob_start();
     $query = new WP_Query( [ 
         'post_type' => 'post', 
         'posts_per_page' => 5,  
@@ -25,23 +43,27 @@ function ce_newsticker_shortcode($atts, $content = null) {
         .ticker-wrapper .left{
             width: 10%; 
             float: left; 
-            background: red; 
-            color: white; 
+            background: <?php echo $title_bg ?>; 
+            color: <?php echo $title_color ?>; 
+            font-size: <?php echo $title_font_size ?>;
+            font-weight: <?php echo $title_font_weight ?>;
             padding: 8px;
         }
         .ticker-wrapper .right{
             width: 90%; 
             float: left; 
-            background: #eee; 
-            color: white; 
+            background: <?php echo $content_bg ?>; 
+            color: <?php echo $content_color ?>; 
+            font-size: <?php echo $content_font_size ?>;
+            font-weight: <?php echo $content_font_weight ?>;
             padding: 5px
         }
         marquee .dot{
-            width: 18px; 
-            height: 18px; 
-            background: red; 
+            width: <?php echo $dot_size ?>; 
+            height: <?php echo $dot_size ?>; 
+            background: <?php echo $dot_bg ?>; 
             display: inline-block; 
-            border-radius: 2px; 
+            border-radius: <?php echo $dot_radius ?>; 
             margin-left: 5px;
         }
         marquee a{
@@ -61,7 +83,7 @@ function ce_newsticker_shortcode($atts, $content = null) {
     </style>
     <div class="ticker-wrapper">
         <div class="left">
-            শিরনামঃ 
+            <?php echo $title ?? 'News' ?>
         </div>
         <div class="right">
             <div>
@@ -75,4 +97,6 @@ function ce_newsticker_shortcode($atts, $content = null) {
         </div>
     </div>
     
-<?php }
+<?php 
+    return ob_get_clean();
+}
