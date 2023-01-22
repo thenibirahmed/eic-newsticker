@@ -78,6 +78,7 @@ function ce_newsticker_shortcode($atts, $content = null) {
             }
             .ticker-wrapper .right{
                 width: 80%; 
+                padding: 8px 0px 4px;
             }
         }
     </style>
@@ -100,4 +101,39 @@ function ce_newsticker_shortcode($atts, $content = null) {
 <?php 
     wp_reset_query();
     return ob_get_clean();
+}
+
+
+// add menu page
+add_action('admin_menu', 'ce_newsticker_menu_page');
+function ce_newsticker_menu_page(){
+    add_menu_page('CE Newsticker', 'CE Newsticker', 'manage_options', 'ce-newsticker', 'ce_newsticker_menu_page_callback', 'dashicons-format-status', 6);
+}
+
+// menu page callback
+function ce_newsticker_menu_page_callback(){
+    ?>
+    <div class="wrap">
+        <h1>CE Newsticker</h1>
+        <p>CE Newsticker is a simple plugin to display news ticker on your website.</p>
+        <p>Use the shortcode <code>[ce_newsticker]</code> to display the news ticker on your website.</p>
+        <p>Use the shortcode <code>[ce_newsticker title="News" title_bg="red" title_color="white" title_font_size="20px" title_font_weight="normal" content_bg="#eee" content_color="white" content_font_size="20px" content_font_weight="normal" dot_bg="red" dot_size="18px" dot_radius="2px"]</code> to customize the news ticker.</p>
+        
+        
+        <p>------ Default Attributes -------</p>
+
+        <p>title = News</p>
+        <p>title_bg = red</p>
+        <p>title_color = white</p>
+        <p>title_font_size = 20px</p>
+        <p>title_font_weight = normal</p>
+        <p>content_bg = #eee</p>
+        <p>content_color = white</p>
+        <p>content_font_size = 20px</p>
+        <p>content_font_weight = normal</p>
+        <p>dot_bg = red</p>
+        <p>dot_size = 18px</p>
+        <p>dot_radius = 2px</p>
+    </div>
+    <?php
 }
