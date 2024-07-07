@@ -11,11 +11,8 @@ License: GPL2,
 Text Domain: ce-newsticker
 */
 
-
-
 add_shortcode('ce_newsticker', 'ce_newsticker_shortcode');
 function ce_newsticker_shortcode($atts, $content = null) { 
-
     extract(shortcode_atts( array(
         'title' => 'News',
         'title_bg' => 'red',
@@ -91,7 +88,7 @@ function ce_newsticker_shortcode($atts, $content = null) {
                 <marquee behavior="" direction="">
                     <?php while($query->have_posts()): $query->the_post() ?>
                         <div class="dot"></div>
-                        <a style="color: black; text-decoration: none" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        <a style="color: <?php echo $content_color ?>; text-decoration: none" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                     <?php endwhile; ?>
                 </marquee>
             </div>
@@ -103,14 +100,11 @@ function ce_newsticker_shortcode($atts, $content = null) {
     return ob_get_clean();
 }
 
-
-// add menu page
 add_action('admin_menu', 'ce_newsticker_menu_page');
 function ce_newsticker_menu_page(){
     add_menu_page('CE Newsticker', 'CE Newsticker', 'manage_options', 'ce-newsticker', 'ce_newsticker_menu_page_callback', 'dashicons-format-status', 6);
 }
 
-// menu page callback
 function ce_newsticker_menu_page_callback(){
     ?>
     <div class="wrap">
