@@ -40,7 +40,7 @@ function eic_newsticker_shortcode($atts, $content = null) {
         .ticker-wrapper{
             display: flex; 
             width: 100%;
-            align-items: center;
+            align-items: stretch;
         }
         .ticker-wrapper .left{
             width: 10%; 
@@ -50,12 +50,17 @@ function eic_newsticker_shortcode($atts, $content = null) {
             font-weight: <?php echo esc_html($title_font_weight) ?>;
             padding-left: 10px;
         }
+        .ticker-wrapper .left span{
+            vertical-align: middle;
+        }
         .ticker-wrapper .right{
             width: 100%;
             background: <?php echo esc_html($content_bg) ?>; 
+        }
+        .ticker-wrapper .right a{
             color: <?php echo esc_html($content_color) ?>; 
             font-size: <?php echo esc_html($content_font_size) ?>;
-            font-weight: <?php echo esc_html($content_font_weight) ?>;
+            font-weight: <?php echo esc_html($content_font_weight) ?>;   
         }
         .ticker-wrapper marquee .single-post{
             display: flex;
@@ -88,7 +93,7 @@ function eic_newsticker_shortcode($atts, $content = null) {
     </style>
     <div class="ticker-wrapper">
         <div class="left">
-            <?php echo esc_html($title) ?? _e('News') ?>
+            <span><?php echo esc_html($title) ?? _e('News') ?></span>
         </div>
         <div class="right">
             <div>
