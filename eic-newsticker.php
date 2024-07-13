@@ -7,7 +7,7 @@ Description: EIC (Elegance In Code) Newsticker is a plugin to display news ticke
 Version: 1.0
 Author: Nibir Ahmed
 Author URI: http://nibirahmed.com/
-License: GPL2,
+License: GPL v2 or later
 Text Domain: eic-newsticker
 */
 
