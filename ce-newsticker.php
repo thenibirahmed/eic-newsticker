@@ -1,18 +1,18 @@
 <?php 
 
 /** 
-Plugin Name: CE Newsticker
-Plugin URI: http://www.codecstasy.com/ce-newsticker/
-Description: CE Newsticker is a simple plugin to display news ticker on your website.
+Plugin Name: EIC Newsticker
+Plugin URI: http://www.eleganceincode.com/
+Description: EIC Newsticker is a simple plugin to display news ticker on your website.
 Version: 1.0
-Author: codecstasy
-Author URI: http://www.codecstasy.com/
+Author: Nibir Ahmed
+Author URI: http://www.nibirahmed.com/
 License: GPL2,
-Text Domain: ce-newsticker
+Text Domain: eic-newsticker
 */
 
-add_shortcode('ce_newsticker', 'ce_newsticker_shortcode');
-function ce_newsticker_shortcode($atts, $content = null) { 
+add_shortcode('eic_newsticker', 'eic_newsticker_shortcode');
+function eic_newsticker_shortcode($atts, $content = null) { 
     extract(shortcode_atts( array(
         'title' => 'News',
         'title_bg' => 'red',
@@ -26,7 +26,7 @@ function ce_newsticker_shortcode($atts, $content = null) {
         'dot_bg' => 'red',
         'dot_size' => '18px',
         'dot_radius' => '2px',
-    ), $atts, 'ce_newsticker' ));
+    ), $atts, 'eic_newsticker' ));
 
     ob_start();
     $query = new WP_Query( [ 
@@ -107,34 +107,51 @@ function ce_newsticker_shortcode($atts, $content = null) {
     return ob_get_clean();
 }
 
-add_action('admin_menu', 'ce_newsticker_menu_page');
-function ce_newsticker_menu_page(){
-    add_menu_page('CE Newsticker', 'CE Newsticker', 'manage_options', 'ce-newsticker', 'ce_newsticker_menu_page_callback', 'dashicons-format-status', 6);
+add_action('admin_menu', 'eic_newsticker_menu_page');
+function eic_newsticker_menu_page(){
+    add_menu_page('EIC Newsticker', 'EIC Newsticker', 'manage_options', 'eic-newsticker', 'eic_newsticker_menu_page_callback', 'dashicons-format-status', 6);
 }
 
-function ce_newsticker_menu_page_callback(){
+function eic_newsticker_menu_page_callback(){
     ?>
-    <div class="wrap">
-        <h1>CE Newsticker</h1>
-        <p>CE Newsticker is a simple plugin to display news ticker on your website.</p>
-        <p>Use the shortcode <code>[ce_newsticker]</code> to display the news ticker on your website.</p>
-        <p>Use the shortcode <code>[ce_newsticker title="News" title_bg="red" title_color="white" title_font_size="20px" title_font_weight="normal" content_bg="#eee" content_color="white" content_font_size="20px" content_font_weight="normal" dot_bg="red" dot_size="18px" dot_radius="2px"]</code> to customize the news ticker.</p>
-        
-        
-        <p>------ Default Attributes -------</p>
-
-        <p>title = News</p>
-        <p>title_bg = red</p>
-        <p>title_color = white</p>
-        <p>title_font_size = 20px</p>
-        <p>title_font_weight = normal</p>
-        <p>content_bg = #eee</p>
-        <p>content_color = white</p>
-        <p>content_font_size = 20px</p>
-        <p>content_font_weight = normal</p>
-        <p>dot_bg = red</p>
-        <p>dot_size = 18px</p>
-        <p>dot_radius = 2px</p>
-    </div>
+        <div class="wrap">
+            <h1>EIC Newsticker</h1>
+            <p>EIC Newsticker is a simple plugin to display news ticker on your website.</p>
+            <p>Use the shortcode <code>[eic_newsticker]</code> to display the news ticker on your website.</p>
+            <p>Use the shortcode to customize the news ticker. <br><br>
+                <code>
+                    [eic_newsticker <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; title="News" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; title_bg="red" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; title_color="white" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; title_font_size="20px" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; title_font_weight="normal" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; content_bg="#eee" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; content_color="white" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; content_font_size="20px" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; content_font_weight="normal" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; dot_bg="red" dot_size="18px" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; dot_radius="2px" <br>
+                    ]
+                </code> 
+            </p>
+            
+            
+            <h3>------ Default Attributes -------</h3>
+            <ul>
+                <li>title = News</li>
+                <li>title_bg = red</li>
+                <li>title_color = white</li>
+                <li>title_font_size = 20px</li>
+                <li>title_font_weight = normal</li>
+                <li>content_bg = #eee</li>
+                <li>content_color = white</li>
+                <li>content_font_size = 20px</li>
+                <li>content_font_weight = normal</li>
+                <li>dot_bg = red</li>
+                <li>dot_size = 18px</li>
+                <li>dot_radius = 2px</li>
+            </ul>
+        </div>
     <?php
 }
