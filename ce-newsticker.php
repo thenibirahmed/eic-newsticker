@@ -37,29 +37,39 @@ function ce_newsticker_shortcode($atts, $content = null) {
     ] );
     ?>
     <style>
+        .ticker-wrapper{
+            display: flex; 
+            width: 100%;
+            align-items: center;
+        }
         .ticker-wrapper .left{
             width: 10%; 
-            float: left; 
             background: <?php echo $title_bg ?>; 
             color: <?php echo $title_color ?>; 
             font-size: <?php echo $title_font_size ?>;
             font-weight: <?php echo $title_font_weight ?>;
-            padding: 8px;
+            padding-left: 10px;
         }
         .ticker-wrapper .right{
-            width: 90%; 
-            float: left; 
+            width: 100%;
             background: <?php echo $content_bg ?>; 
             color: <?php echo $content_color ?>; 
             font-size: <?php echo $content_font_size ?>;
             font-weight: <?php echo $content_font_weight ?>;
-            padding: 5px
+        }
+        .ticker-wrapper marquee .single-post{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .ticker-wrapper marquee{
+            display: flex;
+            align-items: center;
         }
         marquee .dot{
             width: <?php echo $dot_size ?>; 
             height: <?php echo $dot_size ?>; 
             background: <?php echo $dot_bg ?>; 
-            display: inline-block; 
             border-radius: <?php echo $dot_radius ?>; 
             margin-left: 5px;
         }
@@ -68,14 +78,9 @@ function ce_newsticker_shortcode($atts, $content = null) {
             font-weight: inherit;
             /* margin-top: -15px; */
         }
-
         @media all and (max-width: 600px){
             .ticker-wrapper .left{
                 width: 20%; 
-            }
-            .ticker-wrapper .right{
-                width: 80%; 
-                padding: 8px 0px 4px;
             }
         }
     </style>
@@ -85,10 +90,12 @@ function ce_newsticker_shortcode($atts, $content = null) {
         </div>
         <div class="right">
             <div>
-                <marquee behavior="" direction="">
+                <marquee>
                     <?php while($query->have_posts()): $query->the_post() ?>
-                        <div class="dot"></div>
-                        <a style="color: <?php echo $content_color ?>; text-decoration: none" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        <div class="single-post">
+                            <div class="dot"></div>
+                            <a style="color: <?php echo $content_color ?>; text-decoration: none" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        </div>
                     <?php endwhile; ?>
                 </marquee>
             </div>
