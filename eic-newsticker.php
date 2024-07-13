@@ -111,7 +111,7 @@ function eic_newsticker_shortcode($atts, $content = null) {
 
 add_action('admin_menu', 'eic_newsticker_menu_page');
 function eic_newsticker_menu_page(){
-    add_menu_page('EIC Newsticker', 'EIC Newsticker', 'manage_options', 'eic-newsticker', 'eic_newsticker_menu_page_callback', 'dashicons-format-status', 6);
+    add_menu_page('EIC Newsticker', 'EIC Newsticker', 'manage_options', 'eic-newsticker', 'eic_newsticker_menu_page_callback', 'dashicons-format-status', 80);
 }
 
 function eic_newsticker_menu_page_callback(){
