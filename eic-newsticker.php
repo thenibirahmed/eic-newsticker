@@ -29,12 +29,12 @@ function eic_newsticker_shortcode($atts, $content = null) {
     ), $atts, 'eic_newsticker' ));
 
     ob_start();
-    $query = new WP_Query( [ 
-        'post_type' => 'post', 
-        'posts_per_page' => 5,  
-        'orderby' => 'date',
-        'order' => 'DESC',
-    ] );
+        $query = new WP_Query( [ 
+            'post_type' => 'post', 
+            'posts_per_page' => 5,  
+            'orderby' => 'date',
+            'order' => 'DESC',
+        ] );
     ?>
     <style>
         .ticker-wrapper{
