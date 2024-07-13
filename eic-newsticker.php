@@ -44,18 +44,18 @@ function eic_newsticker_shortcode($atts, $content = null) {
         }
         .ticker-wrapper .left{
             width: 10%; 
-            background: <?php echo $title_bg ?>; 
-            color: <?php echo $title_color ?>; 
-            font-size: <?php echo $title_font_size ?>;
-            font-weight: <?php echo $title_font_weight ?>;
+            background: <?php echo esc_html($title_bg) ?>; 
+            color: <?php echo esc_html($title_color) ?>; 
+            font-size: <?php echo esc_html($title_font_size) ?>;
+            font-weight: <?php echo esc_html($title_font_weight) ?>;
             padding-left: 10px;
         }
         .ticker-wrapper .right{
             width: 100%;
-            background: <?php echo $content_bg ?>; 
-            color: <?php echo $content_color ?>; 
-            font-size: <?php echo $content_font_size ?>;
-            font-weight: <?php echo $content_font_weight ?>;
+            background: <?php echo esc_html($content_bg) ?>; 
+            color: <?php echo esc_html($content_color) ?>; 
+            font-size: <?php echo esc_html($content_font_size) ?>;
+            font-weight: <?php echo esc_html($content_font_weight) ?>;
         }
         .ticker-wrapper marquee .single-post{
             display: flex;
@@ -67,10 +67,10 @@ function eic_newsticker_shortcode($atts, $content = null) {
             align-items: center;
         }
         marquee .dot{
-            width: <?php echo $dot_size ?>; 
-            height: <?php echo $dot_size ?>; 
-            background: <?php echo $dot_bg ?>; 
-            border-radius: <?php echo $dot_radius ?>; 
+            width: <?php echo esc_html($dot_size) ?>; 
+            height: <?php echo esc_html($dot_size) ?>; 
+            background: <?php echo esc_html($dot_bg) ?>; 
+            border-radius: <?php echo esc_html($dot_radius) ?>; 
             margin-left: 5px;
             display: inline-block;
             vertical-align: middle;
@@ -88,16 +88,14 @@ function eic_newsticker_shortcode($atts, $content = null) {
     </style>
     <div class="ticker-wrapper">
         <div class="left">
-            <?php echo $title ?? 'News' ?>
+            <?php echo esc_html($title) ?? _e('News') ?>
         </div>
         <div class="right">
             <div>
                 <marquee>
                     <?php while($query->have_posts()): $query->the_post() ?>
-                        <!-- <div class="single-post"> -->
-                            <div class="dot"></div>
-                            <a style="color: <?php echo $content_color ?>; text-decoration: none" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                        <!-- </div> -->
+                        <div class="dot"></div>
+                        <a style="color: <?php echo esc_html($content_color) ?>; text-decoration: none" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                     <?php endwhile; ?>
                 </marquee>
             </div>
@@ -111,16 +109,16 @@ function eic_newsticker_shortcode($atts, $content = null) {
 
 add_action('admin_menu', 'eic_newsticker_menu_page');
 function eic_newsticker_menu_page(){
-    add_menu_page('EIC Newsticker', 'EIC Newsticker', 'manage_options', 'eic-newsticker', 'eic_newsticker_menu_page_callback', 'dashicons-format-status', 80);
+    add_menu_page(__('EIC Newsticker'), __('EIC Newsticker'), 'manage_options', 'eic-newsticker', 'eic_newsticker_menu_page_callback', 'dashicons-format-status', 80);
 }
 
 function eic_newsticker_menu_page_callback(){
     ?>
         <div class="wrap">
-            <h1>EIC Newsticker</h1>
-            <p>EIC Newsticker is a simple plugin to display news ticker on your website.</p>
-            <p>Use the shortcode <code>[eic_newsticker]</code> to display the news ticker on your website.</p>
-            <p>Use the shortcode to customize the news ticker. <br><br>
+            <h1><?php _e('EIC Newsticker') ?></h1>
+            <p><?php _e('EIC Newsticker is a simple plugin to display news ticker on your website.') ?></p>
+            <p><?php _e('Use the shortcode <code>[eic_newsticker]</code> to display the news ticker on your website.') ?></p>
+            <p><?php _e('Use the shortcode to customize the news ticker.') ?><br><br>
                 <code>
                     [eic_newsticker <br>
                         &nbsp;&nbsp;&nbsp;&nbsp; title="News" <br>
