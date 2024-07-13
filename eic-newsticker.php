@@ -3,10 +3,10 @@
 /** 
 Plugin Name: EIC Newsticker
 Plugin URI: http://www.eleganceincode.com/
-Description: EIC Newsticker is a simple plugin to display news ticker on your website.
+Description: EIC (Elegance In Code) Newsticker is a plugin to display news ticker on your website. Lastest 5 posts will be displayed ann will be linked to their post.
 Version: 1.0
 Author: Nibir Ahmed
-Author URI: http://www.nibirahmed.com/
+Author URI: http://nibirahmed.com/
 License: GPL2,
 Text Domain: eic-newsticker
 */
@@ -72,11 +72,13 @@ function eic_newsticker_shortcode($atts, $content = null) {
             background: <?php echo $dot_bg ?>; 
             border-radius: <?php echo $dot_radius ?>; 
             margin-left: 5px;
+            display: inline-block;
+            vertical-align: middle;
         }
         marquee a{
             font-size: 20px;
             font-weight: inherit;
-            /* margin-top: -15px; */
+            vertical-align: middle;
         }
         @media all and (max-width: 600px){
             .ticker-wrapper .left{
@@ -92,10 +94,10 @@ function eic_newsticker_shortcode($atts, $content = null) {
             <div>
                 <marquee>
                     <?php while($query->have_posts()): $query->the_post() ?>
-                        <div class="single-post">
+                        <!-- <div class="single-post"> -->
                             <div class="dot"></div>
                             <a style="color: <?php echo $content_color ?>; text-decoration: none" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                        </div>
+                        <!-- </div> -->
                     <?php endwhile; ?>
                 </marquee>
             </div>
